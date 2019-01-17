@@ -11,6 +11,8 @@ import (
 	"github.com/gorilla/mux"
 
 	"github.com/iandkenzt/kafka-golang/app/isalive"
+	"github.com/iandkenzt/kafka-golang/app/producers"
+
 	"github.com/iandkenzt/kafka-golang/utils"
 
 	c "github.com/iandkenzt/kafka-golang/configuration"
@@ -20,6 +22,9 @@ func init() {
 	// instantiate a logger
 	utils.Logger.Out = os.Stdout
 	utils.InitLogger()
+
+	// instantiate a kafka configuration
+	c.InitProducerConfig()
 }
 
 // RestAPIRouter ...
@@ -35,6 +40,7 @@ func RestAPIRouter() *mux.Router {
 
 	// registration blueprint route App
 	isalive.BuildIsaliveRoutes(restAPIRouter)
+	producers.BuildProducersRoutes(restAPIRouter)
 
 	return router
 }
