@@ -1,0 +1,37 @@
+# version: "3"
+# services:
+#   api-codemi-attendance:
+#     image: registry.gitlab.com/iandkenzt/api-codemi-attendance:master
+#     container_name: api-codemi-attendance
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - /usr/share/zoneinfo:/usr/share/zoneinfo
+#       - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt
+#     restart: always
+#     logging:
+#       driver: json-file
+#       options:
+#         max-size: '10m'
+#         max-file: '2'
+#     env_file:
+#       - .env
+
+version: "3"
+services:
+  kafka-golang:
+    image: kafka-golang:develop
+    container_name: kafka-golang
+    ports:
+      - "3000:3000"
+    volumes:
+      - /usr/share/zoneinfo:/usr/share/zoneinfo
+      - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '2'
+    env_file:
+      - .env
